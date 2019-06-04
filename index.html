@@ -1,45 +1,50 @@
 <html>
-    <head>
-        <style>
-            .item{
-                color: red;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="app">
-            {{msg}}
-            <div>
-                <input type="text" v-model='infor'>
-                <button @click="handClick">添加</button>
-                <ul>
-                    <g-item v-for="item in list" :item="item"></g-item>
-                </ul>
-            </div>
-        </div> 
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-        <!-- 引入的cdn版本的vue -->
-        <script>
-            Vue.component('g-item',{
-                props:['item'],
-                template:'<li class="item">{{item}}</li>'
-            })
-            new Vue({
-                el:'#app',
-                data(){
-                    return{
-                        msg:'hello geektime',
-                        infor:'',
-                        list:[]
-                    }
-                },
-                methods:{
-                    handClick(){
-                        this.list.push(this.infor)
-                        this.infor = ''
-                    }
+
+<head>
+    <style>
+        .item {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        {{msg}}
+        <div>
+            <input type="text" v-model='info'>
+            <button @click='add'>添加</button>
+        </div>
+        <ul>
+            <li v-for="item in list">{{item}}</li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <!-- 引入的cdn版本的vue -->
+    <script>
+        Vue.component('g-item', {
+            props: ['item'],
+            template: '<li class="item">{{item}}</li>'
+        })
+        new Vue({
+            el: '#app',
+            // 设置了el之后，就与上面的id为app的div进行关联上了
+            data() {
+                return {
+                    msg: 'geek time',
+                    info: '',
+                    list: []
                 }
-            })
-        </script>        
-    </body>
+            },
+            methods:{
+                add(){
+                    console.log(this.info)
+                    this.list.push(this.info)
+                    this.info = ''
+                }
+            }
+        })
+    </script>
+</body>
+
 </html>
